@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TechAbyss | Design. Development. Consultant.",
+  title: "Yts | Design. Development. Consultant.",
   description:
     "Building complete web applications through full-stack development, from frontend interfaces to backend APIs and infrastructure.",
 };
