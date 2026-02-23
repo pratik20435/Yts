@@ -1,48 +1,42 @@
-import { title } from "process";
+"use client";
+
 import MovieCard from "./MovieCard";
-
-
-const movies = [
-  {
-    title: "Joe's College Road Trip",
-    year: 2024,
-    rating: 7.2,
-    image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1025&auto=format&fit=crop",
-  },
-  {
-    title: "Kissing is the Easy Part",
-    year: 2024,
-    rating: 6.8,
-    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1000&auto=format&fit=crop",
-  },
-  {
-    title: "Love Me Love Me",
-    year: 2023,
-    rating: 8.1,
-    image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1000&auto=format&fit=crop",
-  },
-  {
-    title: "Is This Thing On?",
-    year: 2024,
-    rating: 7.5,
-    image: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=1000&auto=format&fit=crop",
-  },
-  
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { base_Url } from "../partials/Base_URL";
 
 export default function InitialMovieGrid() {
+  const [moviesList, setMoviesList] = useState<any[]>([]);
+  console.log("@base url of top: ", base_Url);
+
+  const APIGetMovies = async () => {
+    try {
+      const res: any = await axios.get(
+        `${base_Url}/movie_suggestions.json?movie_id=10`,
+      );
+      console.log("@res for movie_suggestions: ", res);
+      console.log("@res data for list movies: ", res?.data?.data?.movies);
+      setMoviesList(res?.data?.data?.movies ?? []);
+    } catch (e) {
+      console.log("error fetching movies data");
+    }
+  };
+
+  useEffect(() => {
+    APIGetMovies();
+  }, []);
+
+  console.log("@moviesList: ", moviesList);
+
   return (
-   <div className="mx-auto max-w-7xl px-6 pb-16">
-  <div className="grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-    {movies.map((movie, index) => (
-      <div key={index} className="w-full max-w-[240px]">
-        <MovieCard {...movie} />
+    <div className="mx-auto max-w-7xl px-6 pb-16">
+      <div className="grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+        {moviesList.map((movie: any, index: number) => (
+          <div key={movie.id ?? index} className="w-full max-w-[240px]">
+            <MovieCard {...movie} />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-</div>
-
-
-
+    </div>
   );
 }

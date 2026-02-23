@@ -1,0 +1,1 @@
+export const base_Url = "https://movies-api.accel.li/api/v2"

@@ -12,6 +12,7 @@
     "@mantine/core": "^8.3.14",
     "@mantine/hooks": "^8.3.14",
     "@tabler/icons-react": "^3.36.1",
+    "axios": "^1.13.5",
     "next": "16.1.6",
     "postcss-simple-vars": "^7.0.1",
     "react": "19.2.3",

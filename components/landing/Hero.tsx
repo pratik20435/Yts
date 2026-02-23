@@ -42,7 +42,7 @@ export default function Hero() {
         </div>
 
         <div className="border-t border-[#2f2f2f] pt-8 mt-8 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-white font-bold text-[18px]">
+          <div className="flex items-center gap-2 text-white font-bold text-[18px] ml-24">
             <span className="text-accent">★</span>
             Popular YTS Downloads
           </div>
