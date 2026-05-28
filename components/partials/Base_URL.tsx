@@ -1,1 +1,1 @@
-export const base_Url = "https://movies-api.accel.li/api/v2"
+export const base_Url = process.env.Yts_base_URL || "https://movies-api.accel.li/api/v2";

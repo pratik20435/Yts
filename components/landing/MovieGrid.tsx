@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { base_Url } from "../partials/Base_URL";
 
 export default function MovieGrid() {
-  const [moviesList, setMoviesList] = useState();
+  const [moviesList, setMoviesList] = useState<any[]>([]);
   console.log("@base url: ", base_Url);
   const APIGetMovies = async () => {
     try {

@@ -27,7 +27,6 @@ export function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   
-  // Auth Modal State
   const [authOpened, setAuthOpened] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
 
@@ -66,23 +65,23 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (debounceRef.current) clearTimeout(debounceRef.current);//yedi users le 400ms vitra feri type garyo vane old search lai cancel garne
     if (!search.trim()) {
       setResults([]);
       setShowDropdown(false);
       setHasSearched(false);
       return;
     }
-    debounceRef.current = setTimeout(() => doSearch(search), 400);
+    debounceRef.current = setTimeout(() => doSearch(search), 400);//wait 400ms and run
     return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (debounceRef.current) clearTimeout(debounceRef.current);//prevent from memory leak and the running purano search after memory changed
     };
   }, [search, doSearch]);
 
   // Close on click outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {//If I click anywhere that is not inside the dropdown, close the dropdown
         setShowDropdown(false);
       }
     };
